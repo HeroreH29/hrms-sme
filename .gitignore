@@ -1,4 +1,4 @@
+/server/.env
+/server/node_modules
 
-BACKEND/config/corsOptions.js
-/FRONTEND/vm_hris/src/components/Dev-Test
-BACKEND/config/corsOptions.js
+/client/node_modules
