@@ -1,10 +1,25 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect, useState } from "react";
+import reactLogo from "./assets/react.svg";
+import viteLogo from "/vite.svg";
+import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition((position) => {
+      fetch("http://192.168.0.201:5000/api/attendance", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          employeeId: "123",
+          lat: position.coords.latitude,
+          lng: position.coords.longitude,
+          timestamp: new Date(),
+        }),
+      });
+    });
+  }, []);
 
   return (
     <>
@@ -29,7 +44,7 @@ function App() {
         Click on the Vite and React logos to learn more
       </p>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
